@@ -1,6 +1,6 @@
 # ⚽ brasileirao-ml: previsão de jogos do Brasileirão
 
-Modelos que dão a probabilidade de **vitória do mandante, empate e vitória do visitante** em jogos da Série A, avaliados com um backtest rodada a rodada em 1.140 jogos (2023–2025).
+Modelos que dão a probabilidade de **vitória do mandante, empate e vitória do visitante** em jogos da Série A. Eles foram avaliados com um backtest rodada a rodada em 1.140 jogos (2023–2025) e testados de novo, fora da amostra, nos 339 jogos já disputados de 2026. Com eles também dá pra simular o fim do Brasileirão 2026.
 
 **Demo:** [Space no Hugging Face](https://huggingface.co/spaces/JulioBuzzi/previsao-brasileirao) · **Modelo:** [Hugging Face](https://huggingface.co/JulioBuzzi/previsao-brasileirao)
 
@@ -19,9 +19,29 @@ Backtest *walk-forward*: antes de cada rodada de 2023, 2024 e 2025, o modelo é 
 | **Média Dixon-Coles + Elo** | **0,2084** | **1,0160** | **0,6084** | **49,9%** |
 
 - **O modelo final melhora o RPS em 5,5% sobre o baseline.** Num bootstrap por rodada, o ganho fica entre 0,0079 e 0,0166 (IC 95%), então não é sorte.
-- **Os modelos clássicos de futebol (Dixon-Coles e Elo) ganharam do Gradient Boosting** com features de forma recente. Com 6 a 7 mil jogos de treino, um modelo com mais estrutura generaliza melhor.
+- **Os modelos clássicos de futebol (Dixon-Coles e Elo) ganharam do Gradient Boosting** com features de forma recente em 2023–2025. Com 6 a 7 mil jogos de treino, um modelo com mais estrutura generaliza melhor.
 - **As probabilidades são bem calibradas** (gráfico acima): quando o modelo diz 40%, aquilo acontece em ~40% das vezes.
 - **O empate é o ponto fraco:** o modelo acerta a frequência média de empates (26,4% previsto contra 26,1% real), mas nunca coloca o empate como resultado mais provável. Por isso a acurácia fica perto de 50%, e as métricas que importam são RPS e log-loss.
+
+### Teste fora da amostra: 2026
+
+Nenhuma decisão do modelo usou 2026. Nos 339 jogos já disputados (rodadas 1 a 34), o resultado foi este:
+
+| Modelo | RPS ↓ | Log-loss ↓ | Acurácia |
+|---|---|---|---|
+| Baseline | 0,2177 | 1,0492 | 48,7% |
+| Elo + logística | 0,2018 | 1,0007 | 52,2% |
+| Dixon-Coles | 0,2025 | 1,0072 | 52,8% |
+| Gradient Boosting | 0,1996 | 0,9988 | 52,8% |
+| **Média DC + Elo** | **0,2014** | **1,0011** | **51,9%** |
+
+O modelo final ganhou do baseline de novo (ganho de RPS de 0,0163, IC 95% de 0,0067 a 0,0259). Em 2026 o Gradient Boosting ficou um pouco à frente. Com 339 jogos a diferença entre os três modelos está dentro do ruído, mas vale acompanhar.
+
+### Simulação do fim do Brasileirão 2026
+
+20.000 simulações das 4 rodadas que faltam (mais Chapecoense × Vasco, adiado), com os jogos até 06/11/2026: Flamengo tem **85,9%** de chance de título e Palmeiras **14,1%**. Na briga contra o rebaixamento, Grêmio (56,5%), Corinthians (44,6%), Vitória (42,8%) e Internacional (35,6%) disputam as duas vagas restantes do Z4. A tabela completa está no [notebook 04](notebooks/04_temporada_2026.ipynb) e no Space.
+
+![Rebaixamento 2026](results/rebaixamento_2026.png)
 
 **RPS** (*Ranked Probability Score*) é a métrica padrão pra previsão de futebol. Ela leva em conta a ordem dos resultados: errar "vitória" por "empate" é menos grave que errar por "derrota".
 
@@ -39,12 +59,13 @@ Backtest *walk-forward*: antes de cada rodada de 2023, 2024 e 2025, o modelo é 
 
 | Notebook | O que tem |
 |---|---|
-| [`01_dados.ipynb`](notebooks/01_dados.ipynb) | 23 temporadas (2003–2025), vantagem de jogar em casa por temporada, placares mais comuns |
-| [`02_modelos.ipynb`](notebooks/02_modelos.ipynb) | Elo no fim de 2025, ataque/defesa no Dixon-Coles, matriz de placares de um jogo |
+| [`01_dados.ipynb`](notebooks/01_dados.ipynb) | 24 temporadas (2003–2026), vantagem de jogar em casa por temporada, placares mais comuns |
+| [`02_modelos.ipynb`](notebooks/02_modelos.ipynb) | Elo atual, ataque/defesa no Dixon-Coles, matriz de placares de um jogo |
 | [`03_backtest.ipynb`](notebooks/03_backtest.ipynb) | Backtest 2023–2025, comparação, bootstrap, calibração, empates |
+| [`04_temporada_2026.ipynb`](notebooks/04_temporada_2026.ipynb) | Teste fora da amostra em 2026, próximos jogos, simulação do fim do campeonato |
 
 <p float="left">
-  <img src="results/elo_2025.png" width="48%" />
+  <img src="results/elo_atual.png" width="48%" />
   <img src="results/placar_exemplo.png" width="48%" />
 </p>
 
@@ -56,7 +77,7 @@ cd brasileirao-ml
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 jupyter notebook notebooks/          # os dados são baixados na primeira execução
-python scripts/treinar.py            # treina o modelo final -> models/params.json e app/
+python scripts/treinar.py            # treina o modelo final + simulação -> models/params.json e app/
 python app/app.py                    # abre a demo em http://127.0.0.1:7860
 ```
 
@@ -66,19 +87,20 @@ from brasileirao.predictor import Previsor
 
 prev = Previsor.carregar("models/params.json")
 prev.prever("Flamengo", "Palmeiras")
-# {'mandante': 0.507, 'empate': 0.259, 'visitante': 0.234, 'gols_esperados': (1.51, 1.03), ...}
+# {'mandante': 0.487, 'empate': 0.274, 'visitante': 0.239, 'gols_esperados': (1.39, 1.01), ...}
 ```
 
-## Atualizando com 2026
+## Atualizando a cada rodada
 
-Os dados públicos vão até 2025. Pra incluir 2026, salve os jogos em `data/raw/jogos_2026.csv` no formato de [`data/modelo_jogos_2026.csv`](data/modelo_jogos_2026.csv):
+Os jogos de 2026 vêm da minha planilha do Google Sheets. Depois de cada rodada:
 
+```bash
+# 1. no Sheets: Arquivo -> Fazer download -> .csv
+python scripts/importar_planilha.py "JogosBrasil - Brasileirao.csv" --temporada 2026
+python scripts/treinar.py
 ```
-rodada,data,mandante,visitante,gols_mandante,gols_visitante
-1,25/01/2026,Time A,Time B,2,1
-```
 
-Use os mesmos nomes de clube do modelo (a lista está em `times_ultima_temporada` no `models/params.json`). Nomes com acento comuns, como `São Paulo` e `Grêmio`, são convertidos automaticamente. Jogos ainda não disputados podem ficar com os gols vazios, porque eles são ignorados no treino. Depois rode `python scripts/treinar.py`.
+O importador confere a planilha antes de gravar `data/raw/jogos_2026.csv`. Ele para se achar um jogo duplicado com o mesmo mando, um resultado que não bate com o placar ou um número de times diferente de 20. Jogos ainda sem placar viram os "próximos jogos" e entram na simulação.
 
 ## Estrutura
 
@@ -89,8 +111,9 @@ src/brasileirao/
   models.py      # Baseline, EloLogit, DixonColes, GradientBoosting, Media
   backtest.py    # walk-forward rodada a rodada + métricas (RPS, log-loss, Brier)
   predictor.py   # modelo final: treina, salva/carrega JSON, prevê confrontos
-notebooks/       # 01, 02, 03
-scripts/         # treinar.py
+  simulacao.py   # tabela + Monte Carlo do fim do campeonato
+notebooks/       # 01, 02, 03, 04
+scripts/         # importar_planilha.py, treinar.py
 models/          # params.json + model card do Hugging Face
 app/             # Space do Hugging Face (Gradio)
 results/         # gráficos e previsões do backtest
@@ -98,13 +121,14 @@ results/         # gráficos e previsões do backtest
 
 ## Dados
 
-Jogos da Série A de 2003 a 2025 do [Brasileirao_Dataset](https://github.com/adaoduque/Brasileirao_Dataset), de Adão Duque. Eles são baixados direto da fonte (commit fixo) e não ficam neste repositório.
+- 2003–2025: [Brasileirao_Dataset](https://github.com/adaoduque/Brasileirao_Dataset), de Adão Duque. Esses dados são baixados direto da fonte (commit fixo) e não ficam neste repositório.
+- 2026: planilha própria, atualizada rodada a rodada (`data/raw/jogos_2026.csv`). Conferi os 340 jogos de 2025 que estão nas duas fontes e todos os placares batem.
 
 ## Próximos passos
 
 - Comparar com as odds das casas de aposta (o benchmark mais difícil)
 - Usar estatísticas de jogo (chutes, chutes no alvo), disponíveis de 2015 a 2023 e em 2025
-- Simular a tabela final (Monte Carlo) com as probabilidades de cada jogo
+- Usar o xG da planilha de 2025–2026 como sinal de força (mais estável que gols)
 
 ---
 

@@ -36,6 +36,11 @@ def download():
 # nomes diferentes pro mesmo clube nas fontes -> um nome só
 TEAM_NAMES = {
     "Atlético-MG": "Atletico-MG",
+    "Atlético Mineiro": "Atletico-MG",
+    "Atletico Mineiro": "Atletico-MG",
+    "Atlético Goianiense": "Atletico-GO",
+    "Clube do Remo": "Remo",
+    "Botafogo RJ": "Botafogo-RJ",
     "Botafogo": "Botafogo-RJ",
     "Ceará SC": "Ceara",
     "EC Vitória": "Vitoria",
@@ -123,6 +128,22 @@ def load_own_csv(path, season):
         "gols_m": df["gols_mandante"].astype(int),
         "gols_v": df["gols_visitante"].astype(int),
     })
+
+
+def load_fixtures(season):
+    """Jogos ainda não disputados de uma temporada (do CSV próprio)."""
+    path = RAW / f"jogos_{season}.csv"
+    if not path.exists():
+        return pd.DataFrame(columns=["temporada", "rodada", "data", "mandante", "visitante"])
+    df = pd.read_csv(path)
+    df = df[df["gols_mandante"].isna() | df["gols_visitante"].isna()]
+    return pd.DataFrame({
+        "temporada": season,
+        "rodada": df["rodada"].astype(int),
+        "data": pd.to_datetime(df["data"], dayfirst=True),
+        "mandante": df["mandante"].map(norm_team),
+        "visitante": df["visitante"].map(norm_team),
+    }).sort_values(["data", "rodada"]).reset_index(drop=True)
 
 
 def load_all():
