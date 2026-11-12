@@ -1,0 +1,1195 @@
+{
+ "versao": 1,
+ "treinado_em": "2026-11-12",
+ "dados_ate": "2026-11-06",
+ "times_ultima_temporada": [
+  "Athletico-PR",
+  "Atletico-MG",
+  "Bahia",
+  "Botafogo-RJ",
+  "Bragantino",
+  "Chapecoense",
+  "Corinthians",
+  "Coritiba",
+  "Cruzeiro",
+  "Flamengo",
+  "Fluminense",
+  "Gremio",
+  "Internacional",
+  "Mirassol",
+  "Palmeiras",
+  "Remo",
+  "Santos",
+  "Sao Paulo",
+  "Vasco",
+  "Vitoria"
+ ],
+ "ultima_temporada": 2026,
+ "elo": {
+  "ratings": {
+   "Guarani": 1498.6962364493818,
+   "Vasco": 1478.371513913461,
+   "Athletico-PR": 1499.03429736687,
+   "Gremio": 1455.0191039870226,
+   "Flamengo": 1715.4161671431568,
+   "Coritiba": 1434.0936411624332,
+   "Goias": 1461.7432783889926,
+   "Paysandu": 1499.678889008088,
+   "Internacional": 1466.6727862086675,
+   "Ponte Preta": 1493.0066173757964,
+   "Criciuma": 1439.780331114629,
+   "Fluminense": 1573.0741090215386,
+   "Juventude": 1425.1512514182882,
+   "Sao Paulo": 1482.0353189774858,
+   "Fortaleza": 1488.5058106321312,
+   "Bahia": 1531.6032948799066,
+   "Cruzeiro": 1596.8706484081367,
+   "Sao Caetano": 1499.658056162386,
+   "Vitoria": 1421.0054793539687,
+   "Figueirense": 1494.2307826172046,
+   "Santos": 1522.2397969325016,
+   "Parana": 1482.8047263479493,
+   "Corinthians": 1458.8088281849102,
+   "Atletico-MG": 1522.517833998171,
+   "Botafogo-RJ": 1487.278018840274,
+   "Palmeiras": 1690.6062927433272,
+   "Brasiliense": 1499.6764384741145,
+   "Santa Cruz": 1492.5478828862042,
+   "Nautico": 1495.1134206369475,
+   "America-RN": 1499.0041953947518,
+   "Sport": 1337.2171871770386,
+   "Ipatinga": 1499.3686882586837,
+   "Portuguesa": 1500.269613303949,
+   "Barueri": 1499.7991375830493,
+   "Avai": 1460.1880582415943,
+   "Santo Andre": 1499.416418022502,
+   "Atletico-GO": 1425.042777572423,
+   "Ceara": 1449.3930663337421,
+   "Gremio Prudente": 1498.6313542698372,
+   "America-MG": 1438.533225922191,
+   "Chapecoense": 1332.691442586998,
+   "Joinville": 1494.9998495342663,
+   "CSA": 1480.2562870784418,
+   "Bragantino": 1506.8705698558117,
+   "Cuiaba": 1445.824595541168,
+   "Mirassol": 1494.2253173728348,
+   "Remo": 1401.929162665007
+  },
+  "hfa": 60,
+  "novo": 1430,
+  "coef": [
+   0.3262506253769534,
+   -0.01245397717188169,
+   -0.3137966482050708
+  ],
+  "intercept": [
+   0.25176553638429344,
+   -0.13340981892650441,
+   -0.11835571745778117
+  ]
+ },
+ "dixon_coles": {
+  "times": [
+   "America-MG",
+   "Athletico-PR",
+   "Atletico-GO",
+   "Atletico-MG",
+   "Bahia",
+   "Botafogo-RJ",
+   "Bragantino",
+   "Ceara",
+   "Chapecoense",
+   "Corinthians",
+   "Coritiba",
+   "Criciuma",
+   "Cruzeiro",
+   "Cuiaba",
+   "Flamengo",
+   "Fluminense",
+   "Fortaleza",
+   "Goias",
+   "Gremio",
+   "Internacional",
+   "Juventude",
+   "Mirassol",
+   "Palmeiras",
+   "Remo",
+   "Santos",
+   "Sao Paulo",
+   "Sport",
+   "Vasco",
+   "Vitoria"
+  ],
+  "ataque": [
+   -0.036446089424803284,
+   0.15353399421838082,
+   -0.42460378936418186,
+   0.03943560046127711,
+   0.15571508901029216,
+   0.16321209762136424,
+   0.04373409175367013,
+   -0.30315149746645603,
+   -0.1668008742368051,
+   -0.021004012853704193,
+   -0.05229795253978776,
+   -0.08574887926861122,
+   0.19911401115401242,
+   -0.3357447303594103,
+   0.49985621709453765,
+   0.15876259601780887,
+   0.05338686804038782,
+   -0.22659561076674753,
+   0.023181852702417984,
+   0.0028100041710331014,
+   -0.09534092932430031,
+   0.11671340852938519,
+   0.3798854065710335,
+   -0.08022814622423055,
+   0.13675687466268188,
+   -0.030936235120555974,
+   -0.42708963723947363,
+   0.12025067814584073,
+   -0.1532824076057035
+  ],
+  "defesa": [
+   -0.43307787417780813,
+   0.05124359609310758,
+   -0.11294108728507962,
+   0.14664688939617498,
+   0.030720488996219326,
+   0.09097467551611835,
+   0.07544508367159918,
+   0.2475838531943585,
+   -0.4137603781218165,
+   0.08987891880496673,
+   -0.1599521356893395,
+   -0.19570207808046797,
+   0.1738434218041954,
+   0.15145699645576916,
+   0.4082694913331361,
+   0.18681836705750818,
+   0.0007860177366670849,
+   -0.0025571480760096976,
+   -0.003963198505462169,
+   0.06454835870719382,
+   -0.2388459751612128,
+   0.0852232034613899,
+   0.5454738801955796,
+   -0.1778563588398762,
+   -0.015751382191651318,
+   0.14412158510264964,
+   -0.3970965094517018,
+   -0.10463949583542158,
+   -0.04396920447013776
+  ],
+  "c": 0.03847854695441126,
+  "casa": 0.33796518709595735,
+  "rho": -0.04425585755070692,
+  "ataque_novo": -0.26373509756631597,
+  "defesa_novo": -0.3392189622591015
+ },
+ "temporada_atual": {
+  "temporada": 2026,
+  "rodadas_disputadas": 34,
+  "tabela": [
+   {
+    "time": "Flamengo",
+    "pos": 1,
+    "P": 76,
+    "J": 34,
+    "V": 23,
+    "E": 7,
+    "D": 4,
+    "GP": 71,
+    "GC": 29,
+    "SG": 42
+   },
+   {
+    "time": "Palmeiras",
+    "pos": 2,
+    "P": 73,
+    "J": 34,
+    "V": 21,
+    "E": 10,
+    "D": 3,
+    "GP": 62,
+    "GC": 23,
+    "SG": 39
+   },
+   {
+    "time": "Cruzeiro",
+    "pos": 3,
+    "P": 60,
+    "J": 34,
+    "V": 18,
+    "E": 6,
+    "D": 10,
+    "GP": 55,
+    "GC": 48,
+    "SG": 7
+   },
+   {
+    "time": "Fluminense",
+    "pos": 4,
+    "P": 57,
+    "J": 34,
+    "V": 16,
+    "E": 9,
+    "D": 9,
+    "GP": 55,
+    "GC": 42,
+    "SG": 13
+   },
+   {
+    "time": "Athletico-PR",
+    "pos": 5,
+    "P": 54,
+    "J": 34,
+    "V": 15,
+    "E": 9,
+    "D": 10,
+    "GP": 51,
+    "GC": 43,
+    "SG": 8
+   },
+   {
+    "time": "Bahia",
+    "pos": 6,
+    "P": 53,
+    "J": 34,
+    "V": 14,
+    "E": 11,
+    "D": 9,
+    "GP": 50,
+    "GC": 45,
+    "SG": 5
+   },
+   {
+    "time": "Atletico-MG",
+    "pos": 7,
+    "P": 50,
+    "J": 34,
+    "V": 14,
+    "E": 8,
+    "D": 12,
+    "GP": 44,
+    "GC": 40,
+    "SG": 4
+   },
+   {
+    "time": "Bragantino",
+    "pos": 8,
+    "P": 47,
+    "J": 34,
+    "V": 13,
+    "E": 8,
+    "D": 13,
+    "GP": 44,
+    "GC": 39,
+    "SG": 5
+   },
+   {
+    "time": "Santos",
+    "pos": 9,
+    "P": 47,
+    "J": 34,
+    "V": 12,
+    "E": 11,
+    "D": 11,
+    "GP": 50,
+    "GC": 49,
+    "SG": 1
+   },
+   {
+    "time": "Sao Paulo",
+    "pos": 10,
+    "P": 44,
+    "J": 34,
+    "V": 12,
+    "E": 8,
+    "D": 14,
+    "GP": 39,
+    "GC": 39,
+    "SG": 0
+   },
+   {
+    "time": "Botafogo-RJ",
+    "pos": 11,
+    "P": 42,
+    "J": 34,
+    "V": 11,
+    "E": 9,
+    "D": 14,
+    "GP": 46,
+    "GC": 53,
+    "SG": -7
+   },
+   {
+    "time": "Coritiba",
+    "pos": 12,
+    "P": 42,
+    "J": 34,
+    "V": 11,
+    "E": 9,
+    "D": 14,
+    "GP": 40,
+    "GC": 51,
+    "SG": -11
+   },
+   {
+    "time": "Vasco",
+    "pos": 13,
+    "P": 41,
+    "J": 33,
+    "V": 11,
+    "E": 8,
+    "D": 14,
+    "GP": 43,
+    "GC": 50,
+    "SG": -7
+   },
+   {
+    "time": "Mirassol",
+    "pos": 14,
+    "P": 40,
+    "J": 34,
+    "V": 10,
+    "E": 10,
+    "D": 14,
+    "GP": 39,
+    "GC": 48,
+    "SG": -9
+   },
+   {
+    "time": "Vitoria",
+    "pos": 15,
+    "P": 38,
+    "J": 34,
+    "V": 10,
+    "E": 8,
+    "D": 16,
+    "GP": 35,
+    "GC": 51,
+    "SG": -16
+   },
+   {
+    "time": "Internacional",
+    "pos": 16,
+    "P": 38,
+    "J": 34,
+    "V": 9,
+    "E": 11,
+    "D": 14,
+    "GP": 38,
+    "GC": 42,
+    "SG": -4
+   },
+   {
+    "time": "Corinthians",
+    "pos": 17,
+    "P": 37,
+    "J": 34,
+    "V": 9,
+    "E": 10,
+    "D": 15,
+    "GP": 36,
+    "GC": 42,
+    "SG": -6
+   },
+   {
+    "time": "Gremio",
+    "pos": 18,
+    "P": 37,
+    "J": 34,
+    "V": 9,
+    "E": 10,
+    "D": 15,
+    "GP": 38,
+    "GC": 47,
+    "SG": -9
+   },
+   {
+    "time": "Remo",
+    "pos": 19,
+    "P": 29,
+    "J": 34,
+    "V": 6,
+    "E": 11,
+    "D": 17,
+    "GP": 37,
+    "GC": 57,
+    "SG": -20
+   },
+   {
+    "time": "Chapecoense",
+    "pos": 20,
+    "P": 21,
+    "J": 33,
+    "V": 4,
+    "E": 9,
+    "D": 20,
+    "GP": 33,
+    "GC": 68,
+    "SG": -35
+   }
+  ],
+  "simulacao": [
+   {
+    "time": "Flamengo",
+    "pos_atual": 1,
+    "pontos_atuais": 76,
+    "pontos_esperados": 84.0627,
+    "campeao": 0.85905,
+    "G4": 1.0,
+    "G6": 1.0,
+    "Z4": 0.0,
+    "pos_media": 1.14095
+   },
+   {
+    "time": "Palmeiras",
+    "pos_atual": 2,
+    "pontos_atuais": 73,
+    "pontos_esperados": 80.79295,
+    "campeao": 0.14095,
+    "G4": 1.0,
+    "G6": 1.0,
+    "Z4": 0.0,
+    "pos_media": 1.85905
+   },
+   {
+    "time": "Cruzeiro",
+    "pos_atual": 3,
+    "pontos_atuais": 60,
+    "pontos_esperados": 66.2862,
+    "campeao": 0.0,
+    "G4": 0.9793,
+    "G6": 1.0,
+    "Z4": 0.0,
+    "pos_media": 3.2073
+   },
+   {
+    "time": "Fluminense",
+    "pos_atual": 4,
+    "pontos_atuais": 57,
+    "pontos_esperados": 63.0425,
+    "campeao": 0.0,
+    "G4": 0.79245,
+    "G6": 0.99505,
+    "Z4": 0.0,
+    "pos_media": 4.09065
+   },
+   {
+    "time": "Athletico-PR",
+    "pos_atual": 5,
+    "pontos_atuais": 54,
+    "pontos_esperados": 59.38425,
+    "campeao": 0.0,
+    "G4": 0.12295,
+    "G6": 0.86905,
+    "Z4": 0.0,
+    "pos_media": 5.4979
+   },
+   {
+    "time": "Bahia",
+    "pos_atual": 6,
+    "pontos_atuais": 53,
+    "pontos_esperados": 59.06475,
+    "campeao": 0.0,
+    "G4": 0.09165,
+    "G6": 0.7559,
+    "Z4": 0.0,
+    "pos_media": 5.8342
+   },
+   {
+    "time": "Atletico-MG",
+    "pos_atual": 7,
+    "pontos_atuais": 50,
+    "pontos_esperados": 55.7669,
+    "campeao": 0.0,
+    "G4": 0.0125,
+    "G6": 0.28595,
+    "Z4": 0.0,
+    "pos_media": 7.07775
+   },
+   {
+    "time": "Santos",
+    "pos_atual": 9,
+    "pontos_atuais": 47,
+    "pontos_esperados": 53.1919,
+    "campeao": 0.0,
+    "G4": 0.0001,
+    "G6": 0.04355,
+    "Z4": 0.0,
+    "pos_media": 8.63895
+   },
+   {
+    "time": "Bragantino",
+    "pos_atual": 8,
+    "pontos_atuais": 47,
+    "pontos_esperados": 52.6892,
+    "campeao": 0.0,
+    "G4": 0.00105,
+    "G6": 0.04745,
+    "Z4": 0.0,
+    "pos_media": 8.52685
+   },
+   {
+    "time": "Sao Paulo",
+    "pos_atual": 10,
+    "pontos_atuais": 44,
+    "pontos_esperados": 49.35475,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0022,
+    "Z4": 5e-05,
+    "pos_media": 10.4894
+   },
+   {
+    "time": "Vasco",
+    "pos_atual": 13,
+    "pontos_atuais": 41,
+    "pontos_esperados": 47.94435,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0008,
+    "Z4": 0.0164,
+    "pos_media": 11.6457
+   },
+   {
+    "time": "Botafogo-RJ",
+    "pos_atual": 11,
+    "pontos_atuais": 42,
+    "pontos_esperados": 47.60575,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 5e-05,
+    "Z4": 0.00985,
+    "pos_media": 11.8688
+   },
+   {
+    "time": "Mirassol",
+    "pos_atual": 14,
+    "pontos_atuais": 40,
+    "pontos_esperados": 45.3669,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 0.1213,
+    "pos_media": 13.90145
+   },
+   {
+    "time": "Coritiba",
+    "pos_atual": 12,
+    "pontos_atuais": 42,
+    "pontos_esperados": 45.28085,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 0.0579,
+    "pos_media": 13.86245
+   },
+   {
+    "time": "Internacional",
+    "pos_atual": 16,
+    "pontos_atuais": 38,
+    "pontos_esperados": 43.2426,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 0.356,
+    "pos_media": 15.42965
+   },
+   {
+    "time": "Vitoria",
+    "pos_atual": 15,
+    "pontos_atuais": 38,
+    "pontos_esperados": 42.537,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 0.4279,
+    "pos_media": 15.78445
+   },
+   {
+    "time": "Corinthians",
+    "pos_atual": 17,
+    "pontos_atuais": 37,
+    "pontos_esperados": 42.4219,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 0.44595,
+    "pos_media": 15.8596
+   },
+   {
+    "time": "Gremio",
+    "pos_atual": 18,
+    "pontos_atuais": 37,
+    "pontos_esperados": 41.9438,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 0.5649,
+    "pos_media": 16.30185
+   },
+   {
+    "time": "Remo",
+    "pos_atual": 19,
+    "pontos_atuais": 29,
+    "pontos_esperados": 33.89605,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 0.99975,
+    "pos_media": 18.9923
+   },
+   {
+    "time": "Chapecoense",
+    "pos_atual": 20,
+    "pontos_atuais": 21,
+    "pontos_esperados": 24.56475,
+    "campeao": 0.0,
+    "G4": 0.0,
+    "G6": 0.0,
+    "Z4": 1.0,
+    "pos_media": 19.99075
+   }
+  ],
+  "n_simulacoes": 20000,
+  "proximos_jogos": [
+   {
+    "rodada": 21,
+    "data": "14/11/2026",
+    "mandante": "Chapecoense",
+    "visitante": "Vasco",
+    "p_mandante": 0.30762659846685037,
+    "p_empate": 0.26696071562082513,
+    "p_visitante": 0.4254126859123245,
+    "gols_esperados": [
+     1.369276304869634,
+     1.7726748193023487
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "14/11/2026",
+    "mandante": "Mirassol",
+    "visitante": "Atletico-MG",
+    "p_mandante": 0.46060945448993956,
+    "p_empate": 0.28034993564440724,
+    "p_visitante": 0.25904060986565314,
+    "gols_esperados": [
+     1.4141239930289347,
+     0.9927175901454143
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "18/11/2026",
+    "mandante": "Coritiba",
+    "visitante": "Santos",
+    "p_mandante": 0.37909840502311326,
+    "p_empate": 0.27689030629650213,
+    "p_visitante": 0.34401128868038466,
+    "gols_esperados": [
+     1.404803118383442,
+     1.398202603745404
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "18/11/2026",
+    "mandante": "Remo",
+    "visitante": "Chapecoense",
+    "p_mandante": 0.5854200085334663,
+    "p_empate": 0.235412774250607,
+    "p_visitante": 0.17916721721592666,
+    "gols_esperados": [
+     2.0339423741824283,
+     1.050781351332311
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "18/11/2026",
+    "mandante": "Cruzeiro",
+    "visitante": "Palmeiras",
+    "p_mandante": 0.3375485331045381,
+    "p_empate": 0.2915489243372023,
+    "p_visitante": 0.3709025425582596,
+    "gols_esperados": [
+     1.030540956655946,
+     1.2770088811455544
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "18/11/2026",
+    "mandante": "Flamengo",
+    "visitante": "Athletico-PR",
+    "p_mandante": 0.7126765352393827,
+    "p_empate": 0.18847907778945117,
+    "p_visitante": 0.09884438697116613,
+    "gols_esperados": [
+     2.282009364461604,
+     0.8055282946548764
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "18/11/2026",
+    "mandante": "Gremio",
+    "visitante": "Bahia",
+    "p_mandante": 0.4099849541242744,
+    "p_empate": 0.27915558182357036,
+    "p_visitante": 0.31085946405215537,
+    "gols_esperados": [
+     1.4461503542492442,
+     1.2191535841350534
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "18/11/2026",
+    "mandante": "Corinthians",
+    "visitante": "Botafogo-RJ",
+    "p_mandante": 0.430745887910577,
+    "p_empate": 0.28309864677811314,
+    "p_visitante": 0.28615546531130986,
+    "gols_esperados": [
+     1.3027338862199256,
+     1.118302293321189
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "19/11/2026",
+    "mandante": "Vitoria",
+    "visitante": "Bragantino",
+    "p_mandante": 0.3745793084407564,
+    "p_empate": 0.29311566575359205,
+    "p_visitante": 0.33230502580565163,
+    "gols_esperados": [
+     1.1591839228754173,
+     1.1344884485122606
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "19/11/2026",
+    "mandante": "Vasco",
+    "visitante": "Internacional",
+    "p_mandante": 0.48185624827523615,
+    "p_empate": 0.26716136450429995,
+    "p_visitante": 0.25098238722046406,
+    "gols_esperados": [
+     1.5405601029086722,
+     1.1571129272636609
+    ]
+   },
+   {
+    "rodada": 35,
+    "data": "19/11/2026",
+    "mandante": "Sao Paulo",
+    "visitante": "Fluminense",
+    "p_mandante": 0.38203876602667464,
+    "p_empate": 0.29563097045202064,
+    "p_visitante": 0.3223302635213046,
+    "gols_esperados": [
+     1.1719735608191164,
+     1.0545557180176917
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "21/11/2026",
+    "mandante": "Palmeiras",
+    "visitante": "Flamengo",
+    "p_mandante": 0.4629753402847445,
+    "p_empate": 0.2798493950630394,
+    "p_visitante": 0.257175264652216,
+    "gols_esperados": [
+     1.4163167295052939,
+     0.9928863068079296
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "21/11/2026",
+    "mandante": "Bahia",
+    "visitante": "Coritiba",
+    "p_mandante": 0.6084820010981994,
+    "p_empate": 0.23058769829365422,
+    "p_visitante": 0.16093030060814634,
+    "gols_esperados": [
+     1.9979286297649623,
+     0.9564374426608909
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "21/11/2026",
+    "mandante": "Chapecoense",
+    "visitante": "Cruzeiro",
+    "p_mandante": 0.19984027126573978,
+    "p_empate": 0.25295319205582345,
+    "p_visitante": 0.5472065366784368,
+    "gols_esperados": [
+     1.0364479535791564,
+     1.9181341875307394
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "22/11/2026",
+    "mandante": "Athletico-PR",
+    "visitante": "Remo",
+    "p_mandante": 0.6170652161367249,
+    "p_empate": 0.22830746456790174,
+    "p_visitante": 0.15462731929537338,
+    "gols_esperados": [
+     2.0295905782242984,
+     0.911199700658309
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "22/11/2026",
+    "mandante": "Fluminense",
+    "visitante": "Mirassol",
+    "p_mandante": 0.5464245525576793,
+    "p_empate": 0.25638187462713713,
+    "p_visitante": 0.19719357281518363,
+    "gols_esperados": [
+     1.5682857229652403,
+     0.9688684725238782
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "22/11/2026",
+    "mandante": "Bragantino",
+    "visitante": "Vasco",
+    "p_mandante": 0.518547278334864,
+    "p_empate": 0.25852640129457594,
+    "p_visitante": 0.2229263203705601,
+    "gols_esperados": [
+     1.6901500663328672,
+     1.0868505839558753
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "23/11/2026",
+    "mandante": "Internacional",
+    "visitante": "Vitoria",
+    "p_mandante": 0.5389814523108871,
+    "p_empate": 0.2647898864018234,
+    "p_visitante": 0.19622866128728955,
+    "gols_esperados": [
+     1.526874663570952,
+     0.835811458570447
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "23/11/2026",
+    "mandante": "Botafogo-RJ",
+    "visitante": "Sao Paulo",
+    "p_mandante": 0.49908490354543883,
+    "p_empate": 0.2731250841978996,
+    "p_visitante": 0.2277900122566615,
+    "gols_esperados": [
+     1.4851774299558642,
+     0.9199533068212051
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "23/11/2026",
+    "mandante": "Santos",
+    "visitante": "Gremio",
+    "p_mandante": 0.5400553913025197,
+    "p_empate": 0.25267988985730894,
+    "p_visitante": 0.2072647188401714,
+    "gols_esperados": [
+     1.6772638537357365,
+     1.0804869096961083
+    ]
+   },
+   {
+    "rodada": 36,
+    "data": "25/11/2026",
+    "mandante": "Atletico-MG",
+    "visitante": "Corinthians",
+    "p_mandante": 0.5248433950711816,
+    "p_empate": 0.26997012592317016,
+    "p_visitante": 0.2051864790056482,
+    "gols_esperados": [
+     1.3854159447993264,
+     0.8788224827828461
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Chapecoense",
+    "visitante": "Palmeiras",
+    "p_mandante": 0.11441878228368418,
+    "p_empate": 0.21260454397024853,
+    "p_visitante": 0.6729766737460673,
+    "gols_esperados": [
+     0.7147438727587692,
+     2.298195688134684
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Internacional",
+    "visitante": "Bragantino",
+    "p_mandante": 0.44241439990245834,
+    "p_empate": 0.2841620627425367,
+    "p_visitante": 0.2734235373550049,
+    "gols_esperados": [
+     1.3550097563307013,
+     1.017821216087358
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Botafogo-RJ",
+    "visitante": "Bahia",
+    "p_mandante": 0.4693026352617442,
+    "p_empate": 0.26884362861041133,
+    "p_visitante": 0.26185373612784435,
+    "gols_esperados": [
+     1.6635191739427357,
+     1.1087341514267084
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Mirassol",
+    "visitante": "Athletico-PR",
+    "p_mandante": 0.4790590997891088,
+    "p_empate": 0.26926773437044205,
+    "p_visitante": 0.2516731658404492,
+    "gols_esperados": [
+     1.5556812405112952,
+     1.1126998258957161
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Coritiba",
+    "visitante": "Flamengo",
+    "p_mandante": 0.17460920122367996,
+    "p_empate": 0.24466187541334805,
+    "p_visitante": 0.580728923362972,
+    "gols_esperados": [
+     0.9193175204528345,
+     2.010305900386294
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Vitoria",
+    "visitante": "Santos",
+    "p_mandante": 0.3693062701200828,
+    "p_empate": 0.2860650272034694,
+    "p_visitante": 0.34462870267644785,
+    "gols_esperados": [
+     1.2698676832638685,
+     1.2450860277044054
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Corinthians",
+    "visitante": "Gremio",
+    "p_mandante": 0.4847589872574817,
+    "p_empate": 0.2757147223446159,
+    "p_visitante": 0.23952629039790235,
+    "gols_esperados": [
+     1.4324738572501683,
+     0.9721759045380565
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Fluminense",
+    "visitante": "Cruzeiro",
+    "p_mandante": 0.4590924526329582,
+    "p_empate": 0.2779339303192693,
+    "p_visitante": 0.26297361704777256,
+    "gols_esperados": [
+     1.4352842428877,
+     1.0520852961833593
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Sao Paulo",
+    "visitante": "Remo",
+    "p_mandante": 0.5794352877432554,
+    "p_empate": 0.2490830154997798,
+    "p_visitante": 0.17148169675696487,
+    "gols_esperados": [
+     1.6876952786816968,
+     0.8303805540849469
+    ]
+   },
+   {
+    "rodada": 37,
+    "data": "29/11/2026",
+    "mandante": "Atletico-MG",
+    "visitante": "Vasco",
+    "p_mandante": 0.5357096474854576,
+    "p_empate": 0.2564771199274103,
+    "p_visitante": 0.20781323258713214,
+    "gols_esperados": [
+     1.6829005631155605,
+     1.0121556219811567
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Remo",
+    "visitante": "Corinthians",
+    "p_mandante": 0.39309953739816506,
+    "p_empate": 0.2857578220277268,
+    "p_visitante": 0.32114264057410813,
+    "gols_esperados": [
+     1.2291669567787264,
+     1.2157131908553964
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Bahia",
+    "visitante": "Atletico-MG",
+    "p_mandante": 0.48382531341679963,
+    "p_empate": 0.272121128638214,
+    "p_visitante": 0.24405355794498634,
+    "gols_esperados": [
+     1.4703668590943444,
+     1.048325006386779
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Athletico-PR",
+    "visitante": "Sao Paulo",
+    "p_mandante": 0.49954643813237765,
+    "p_empate": 0.2719557953359757,
+    "p_visitante": 0.22849776653164663,
+    "gols_esperados": [
+     1.470873060452764,
+     0.9572398573825904
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Gremio",
+    "visitante": "Mirassol",
+    "p_mandante": 0.42734501502567535,
+    "p_empate": 0.2801386945142305,
+    "p_visitante": 0.2925162904600941,
+    "gols_esperados": [
+     1.3694406657400442,
+     1.1725198537013395
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Cruzeiro",
+    "visitante": "Internacional",
+    "p_mandante": 0.59801381236502,
+    "p_empate": 0.24087198201425497,
+    "p_visitante": 0.16111420562072493,
+    "gols_esperados": [
+     1.6669729660276693,
+     0.8758548740362451
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Bragantino",
+    "visitante": "Fluminense",
+    "p_mandante": 0.401375282191642,
+    "p_empate": 0.28789727500509676,
+    "p_visitante": 0.3107274428032613,
+    "gols_esperados": [
+     1.2628353349577648,
+     1.1295237224313366
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Palmeiras",
+    "visitante": "Coritiba",
+    "p_mandante": 0.7736344631587111,
+    "p_empate": 0.1610608729299643,
+    "p_visitante": 0.06530466391132458,
+    "gols_esperados": [
+     2.4999763612032257,
+     0.5716128880936442
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Santos",
+    "visitante": "Botafogo-RJ",
+    "p_mandante": 0.4840331712349182,
+    "p_empate": 0.26298338258525866,
+    "p_visitante": 0.2529834461798232,
+    "gols_esperados": [
+     1.5253531136601886,
+     1.242893372872504
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Flamengo",
+    "visitante": "Chapecoense",
+    "p_mandante": 0.871251994276707,
+    "p_empate": 0.09868219961565415,
+    "p_visitante": 0.03006580610763891,
+    "gols_esperados": [
+     3.633005725712993,
+     0.584737752482394
+    ]
+   },
+   {
+    "rodada": 38,
+    "data": "02/12/2026",
+    "mandante": "Vasco",
+    "visitante": "Vitoria",
+    "p_mandante": 0.5501699110522846,
+    "p_empate": 0.25247736900999074,
+    "p_visitante": 0.19735271993772452,
+    "gols_esperados": [
+     1.717146010875393,
+     0.989887117763299
+    ]
+   }
+  ]
+ }
+}
