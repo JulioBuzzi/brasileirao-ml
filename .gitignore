@@ -1,0 +1,6 @@
+# dados públicos são baixados automaticamente (data/raw/jogos_<ano>.csv, que são seus, vão pro repo)
+data/raw/campeonato-brasileiro-full.csv
+data/raw/brasileirao-*.json
+__pycache__/
+.ipynb_checkpoints/
+.venv/
