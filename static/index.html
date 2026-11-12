@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Previsão Brasileirão · Dixon-Coles + Elo</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --card: #ffffff; --ink: #1d1d1b; --ink2: #5c5c58; --ink3: #8a8a85;
+    --line: #e6e6e3; --casa: #2a78d6; --empate: #b9b9b4; --fora: #eb6834; --verde: #127a52;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 40px; }
+  header h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+  header p { margin: 0; color: var(--ink2); }
+  .metricas { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 22px; }
+  .metrica { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+  .metrica b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+  .metrica span { color: var(--ink3); font-size: 12.5px; }
+  nav { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 18px; overflow-x: auto; }
+  nav button { background: none; border: 0; padding: 10px 14px; font: inherit; color: var(--ink2);
+               cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+  nav button.ativo { color: var(--ink); border-bottom-color: var(--ink); font-weight: 600; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .seletores { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: end; }
+  label { display: block; font-size: 12.5px; color: var(--ink3); margin-bottom: 4px; }
+  select { width: 100%; padding: 9px 10px; font: inherit; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  .trocar { padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: pointer; font: inherit; }
+  .barra { display: flex; height: 38px; border-radius: 8px; overflow: hidden; margin: 22px 0 8px; gap: 2px; background: var(--card); }
+  .barra div { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600;
+               font-size: 14px; font-variant-numeric: tabular-nums; min-width: 0; }
+  .barra .e { color: var(--ink); }
+  .legenda { display: flex; justify-content: space-between; color: var(--ink2); font-size: 13.5px; }
+  .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+  .info dt { color: var(--ink3); font-size: 12.5px; }
+  .info dd { margin: 0 0 10px; font-variant-numeric: tabular-nums; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-size: 12px; color: var(--ink3); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  td { padding: 7px 8px; border-bottom: 1px solid var(--line); }
+  td.n, th.n { text-align: right; }
+  .mini { display: flex; height: 8px; width: 120px; border-radius: 4px; overflow: hidden; gap: 1px; }
+  .rodada td { background: #fafaf8; font-weight: 600; font-size: 13px; color: var(--ink2); }
+  .tabela-wrap { overflow-x: auto; }
+  .z4 { box-shadow: inset 3px 0 0 #d03b3b; }
+  .g4 { box-shadow: inset 3px 0 0 var(--casa); }
+  .nota { color: var(--ink3); font-size: 13px; margin-top: 12px; }
+  footer { margin-top: 28px; color: var(--ink3); font-size: 13px; }
+  footer a, header a { color: var(--ink2); }
+  .oculto { display: none; }
+  @media (max-width: 640px) {
+    .seletores { grid-template-columns: 1fr; }
+    .grade { grid-template-columns: 1fr; }
+    .mini { width: 70px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>⚽ Previsão Brasileirão Série A</h1>
+    <p id="sub">Carregando modelo…</p>
+  </header>
+
+  <div class="metricas">
+    <div class="metrica"><b>0,208</b><span>RPS no backtest 2023–2025 (baseline 0,221)</span></div>
+    <div class="metrica"><b>0,201</b><span>RPS em 2026, fora da amostra (baseline 0,218)</span></div>
+    <div class="metrica"><b>1.479</b><span>jogos previstos sem ver o resultado</span></div>
+  </div>
+
+  <nav>
+    <button class="ativo" data-aba="confronto">Confronto</button>
+    <button data-aba="proximos">Próximos jogos</button>
+    <button data-aba="simulacao">Simulação do campeonato</button>
+  </nav>
+
+  <section id="confronto" class="card">
+    <div class="seletores">
+      <div><label for="mand">Mandante</label><select id="mand"></select></div>
+      <button class="trocar" id="trocar" title="Inverter mando">⇄</button>
+      <div><label for="vis">Visitante</label><select id="vis"></select></div>
+    </div>
+    <div class="barra" id="barra"></div>
+    <div class="legenda" id="legenda"></div>
+    <div class="grade">
+      <dl class="info" id="info"></dl>
+      <div>
+        <table><thead><tr><th>Placar mais provável</th><th class="n">Prob.</th></tr></thead><tbody id="placares"></tbody></table>
+      </div>
+    </div>
+  </section>
+
+  <section id="proximos" class="card oculto">
+    <div class="tabela-wrap"><table>
+      <thead><tr><th>Data</th><th>Jogo</th><th class="n">Mandante</th><th class="n">Empate</th><th class="n">Visitante</th><th></th></tr></thead>
+      <tbody id="tab-proximos"></tbody>
+    </table></div>
+  </section>
+
+  <section id="simulacao" class="card oculto">
+    <p id="sim-sub" style="margin-top:0;color:var(--ink2)"></p>
+    <div class="tabela-wrap"><table>
+      <thead><tr><th>#</th><th>Time</th><th class="n">Pts</th><th class="n">J</th><th class="n">SG</th>
+        <th class="n">Pts esperados</th><th class="n">Campeão</th><th class="n">G4</th><th class="n">G6</th><th class="n">Rebaixamento</th></tr></thead>
+      <tbody id="tab-sim"></tbody>
+    </table></div>
+    <p class="nota">A barra azul marca o G4 atual e a vermelha, o Z4. Desempate: pontos, vitórias, saldo, gols marcados.</p>
+  </section>
+
+  <footer>
+    Média de dois modelos: <b>Dixon-Coles</b> (Poisson para os gols) e <b>Elo</b>, treinados com jogos da Série A desde 2003.
+    Código e metodologia: <a href="https://github.com/JulioBuzzi/brasileirao-ml">github.com/JulioBuzzi/brasileirao-ml</a> ·
+    Modelo: <a href="https://huggingface.co/JulioBuzzi/previsao-brasileirao">huggingface.co/JulioBuzzi/previsao-brasileirao</a><br>
+    Projeto de portfólio. Não é recomendação de aposta.
+  </footer>
+</div>
+
+<script src="modelo.js"></script>
+<script>
+const NOMES = {
+  "Atletico-MG": "Atlético-MG", "Botafogo-RJ": "Botafogo", "Sao Paulo": "São Paulo", "Gremio": "Grêmio",
+  "Vitoria": "Vitória", "Ceara": "Ceará", "Atletico-GO": "Atlético-GO", "Cuiaba": "Cuiabá", "Goias": "Goiás",
+  "Avai": "Avaí", "Criciuma": "Criciúma", "America-MG": "América-MG", "Parana": "Paraná",
+};
+const nome = (t) => NOMES[t] || t;
+const pct = (x) => x >= 0.9995 ? ">99,9%" : (x > 0 && x < 0.0005 ? "<0,1%" : (x * 100).toFixed(1).replace(".", ",") + "%");
+const num = (x, d = 2) => x.toFixed(d).replace(".", ",");
+const $ = (id) => document.getElementById(id);
+
+// sequencial azul pras células de probabilidade (texto sempre em tinta, nunca na cor)
+const fundo = (p) => p < 0.005 ? "" : `background: rgba(42,120,214,${(0.08 + 0.42 * p).toFixed(3)})`;
+
+fetch("params.json").then((r) => r.json()).then((params) => {
+  const modelo = criarModelo(params);
+  const atual = params.temporada_atual;
+  $("sub").innerHTML = `Probabilidades de qualquer confronto, com jogos até <b>${params.dados_ate.split("-").reverse().join("/")}</b>.`;
+
+  // ------------------------------------------------------------- confronto
+  const times = [...modelo.times].sort((a, b) => nome(a).localeCompare(nome(b), "pt"));
+  for (const sel of [$("mand"), $("vis")])
+    sel.innerHTML = times.map((t) => `<option value="${t}">${nome(t)}</option>`).join("");
+  $("mand").value = times.includes("Flamengo") ? "Flamengo" : times[0];
+  $("vis").value = times.includes("Palmeiras") ? "Palmeiras" : times[1];
+
+  function atualizar() {
+    const m = $("mand").value, v = $("vis").value;
+    if (m === v) { $("barra").innerHTML = ""; $("legenda").textContent = "Escolha dois times diferentes."; return; }
+    const r = modelo.prever(m, v);
+    const seg = [[r.mandante, "var(--casa)", ""], [r.empate, "var(--empate)", "e"], [r.visitante, "var(--fora)", ""]];
+    $("barra").innerHTML = seg.map(([p, cor, cls]) =>
+      `<div class="${cls}" style="flex:${p};background:${cor}">${p > 0.08 ? pct(p) : ""}</div>`).join("");
+    $("legenda").innerHTML = `<span>${nome(m)} vence</span><span>Empate</span><span>${nome(v)} vence</span>`;
+    $("info").innerHTML = `
+      <dt>Gols esperados</dt><dd>${nome(m)} ${num(r.golsEsperados[0])} x ${num(r.golsEsperados[1])} ${nome(v)}</dd>
+      <dt>Elo</dt><dd>${nome(m)} ${r.elo[0].toFixed(0)} · ${nome(v)} ${r.elo[1].toFixed(0)}</dd>
+      <dt>Odd justa (1 / probabilidade)</dt><dd>${num(1 / r.mandante)} · ${num(1 / r.empate)} · ${num(1 / r.visitante)}</dd>`;
+    $("placares").innerHTML = r.placares.map(([s, p]) => `<tr><td>${s}</td><td class="n">${pct(p)}</td></tr>`).join("");
+  }
+  $("mand").onchange = $("vis").onchange = atualizar;
+  $("trocar").onclick = () => { const t = $("mand").value; $("mand").value = $("vis").value; $("vis").value = t; atualizar(); };
+  atualizar();
+
+  // ------------------------------------------------- próximos + simulação
+  if (!atual) {
+    document.querySelectorAll('[data-aba="proximos"], [data-aba="simulacao"]').forEach((b) => b.remove());
+  } else {
+    let html = "", rodadaAnt = null;
+    for (const j of atual.proximos_jogos) {
+      if (j.rodada !== rodadaAnt) { html += `<tr class="rodada"><td colspan="6">Rodada ${j.rodada}</td></tr>`; rodadaAnt = j.rodada; }
+      html += `<tr><td>${j.data.slice(0, 5)}</td><td>${nome(j.mandante)} x ${nome(j.visitante)}</td>
+        <td class="n">${pct(j.p_mandante)}</td><td class="n">${pct(j.p_empate)}</td><td class="n">${pct(j.p_visitante)}</td>
+        <td><div class="mini"><div style="flex:${j.p_mandante};background:var(--casa)"></div><div style="flex:${j.p_empate};background:var(--empate)"></div><div style="flex:${j.p_visitante};background:var(--fora)"></div></div></td></tr>`;
+    }
+    $("tab-proximos").innerHTML = html;
+
+    const tab = Object.fromEntries(atual.tabela.map((t) => [t.time, t]));
+    const sim = [...atual.simulacao].sort((a, b) => a.pos_atual - b.pos_atual);
+    const n = sim.length;
+    $("sim-sub").textContent = `Tabela depois da rodada ${atual.rodadas_disputadas} e chance de cada time terminar campeão, no G4, no G6 ou rebaixado, em ${atual.n_simulacoes.toLocaleString("pt-BR")} simulações do resto do campeonato.`;
+    $("tab-sim").innerHTML = sim.map((s) => {
+      const cls = s.pos_atual <= 4 ? "g4" : (s.pos_atual > n - 4 ? "z4" : "");
+      const t = tab[s.time];
+      return `<tr><td class="${cls}">${s.pos_atual}</td><td>${nome(s.time)}</td><td class="n"><b>${s.pontos_atuais}</b></td>
+        <td class="n">${t.J}</td><td class="n">${t.SG}</td><td class="n">${num(s.pontos_esperados, 1)}</td>
+        ${["campeao", "G4", "G6", "Z4"].map((k) => `<td class="n" style="${fundo(s[k])}">${pct(s[k])}</td>`).join("")}</tr>`;
+    }).join("");
+  }
+
+  // ----------------------------------------------------------------- abas
+  document.querySelectorAll("nav button").forEach((b) => b.onclick = () => {
+    document.querySelectorAll("nav button").forEach((x) => x.classList.toggle("ativo", x === b));
+    document.querySelectorAll("section").forEach((s) => s.classList.toggle("oculto", s.id !== b.dataset.aba));
+  });
+}).catch((e) => { $("sub").textContent = "Erro ao carregar params.json: " + e; });
+</script>
+</body>
+</html>

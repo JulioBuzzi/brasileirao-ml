@@ -78,7 +78,8 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 jupyter notebook notebooks/          # os dados são baixados na primeira execução
 python scripts/treinar.py            # treina o modelo final + simulação -> models/params.json e app/
-python app/app.py                    # abre a demo em http://127.0.0.1:7860
+python -m http.server -d static     # abre a demo em http://127.0.0.1:8000
+python app/app.py                    # (opcional) versão em Gradio, em http://127.0.0.1:7860
 ```
 
 ```python
@@ -90,6 +91,10 @@ prev.prever("Flamengo", "Palmeiras")
 # {'mandante': 0.487, 'empate': 0.274, 'visitante': 0.239, 'gols_esperados': (1.39, 1.01), ...}
 ```
 
+## Demo
+
+O Space é uma página estática ([`static/`](static)). O `modelo.js` refaz em JavaScript as mesmas contas do `predictor.py` a partir do `params.json`: Poisson com correção de Dixon-Coles mais a logística do Elo. Conferi os 380 confrontos possíveis e a diferença máxima entre JS e Python é de 10⁻¹⁶. Por isso não precisa de servidor e roda no plano grátis do Hugging Face.
+
 ## Atualizando a cada rodada
 
 Os jogos de 2026 vêm da minha planilha do Google Sheets. Depois de cada rodada:
@@ -99,6 +104,8 @@ Os jogos de 2026 vêm da minha planilha do Google Sheets. Depois de cada rodada:
 python scripts/importar_planilha.py "JogosBrasil - Brasileirao.csv" --temporada 2026
 python scripts/treinar.py
 ```
+
+Depois, suba o `static/params.json` no Space e o `models/params.json` no repositório do modelo.
 
 O importador confere a planilha antes de gravar `data/raw/jogos_2026.csv`. Ele para se achar um jogo duplicado com o mesmo mando, um resultado que não bate com o placar ou um número de times diferente de 20. Jogos ainda sem placar viram os "próximos jogos" e entram na simulação.
 
@@ -115,7 +122,8 @@ src/brasileirao/
 notebooks/       # 01, 02, 03, 04
 scripts/         # importar_planilha.py, treinar.py
 models/          # params.json + model card do Hugging Face
-app/             # Space do Hugging Face (Gradio)
+static/          # Space do Hugging Face: página estática (HTML + JS), as contas rodam no navegador
+app/             # versão em Gradio pra rodar localmente
 results/         # gráficos e previsões do backtest
 ```
 

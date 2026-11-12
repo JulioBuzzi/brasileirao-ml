@@ -1,7 +1,7 @@
 """Treina o modelo final com todos os jogos de data/raw e salva models/params.json.
 Se tiver jogos a disputar na temporada atual (data/raw/jogos_<ano>.csv), também salva
 a tabela, as previsões dos próximos jogos e a simulação do fim do campeonato.
-Por último, copia os arquivos que o Space do Hugging Face precisa pra pasta app/.
+Por último, copia o params.json pra pasta static/ (Space do Hugging Face) e pra app/ (versão Gradio local).
 
     python scripts/treinar.py
 """
@@ -51,3 +51,8 @@ print("-> models/params.json")
 shutil.copy(ROOT / "models" / "params.json", ROOT / "app" / "params.json")
 shutil.copy(ROOT / "src" / "brasileirao" / "predictor.py", ROOT / "app" / "predictor.py")
 print("app/ atualizado (params.json + predictor.py)")
+
+# Space estático (o que vai pro Hugging Face): só precisa do params.json
+(ROOT / "static").mkdir(exist_ok=True)
+shutil.copy(ROOT / "models" / "params.json", ROOT / "static" / "params.json")
+print("static/ atualizado (params.json)")
