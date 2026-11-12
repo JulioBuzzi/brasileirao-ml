@@ -57,7 +57,7 @@ def tabela_simulacao():
     return pd.DataFrame({
         "Pos": sim["pos_atual"], "Time": sim["time"], "Pts": sim["pontos_atuais"],
         "J": sim["time"].map(tab["J"]), "SG": sim["time"].map(tab["SG"]),
-        "Pts esperados": sim["pontos_esperados"].round(1),
+        "Pts esperados": sim["pontos_esperados"].map(lambda x: f"{x:.1f}".replace(".", ",")),
         "Campeão": sim["campeao"].map(pct), "G4": sim["G4"].map(pct), "G6": sim["G6"].map(pct),
         "Rebaixamento": sim["Z4"].map(pct),
     })
